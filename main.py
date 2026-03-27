@@ -28,3 +28,4 @@ print("=" * 30)
 # d) Сравнение [cite: 202, 203]
 print("Tip included:", tip > 0) # [cite: 204, 206]
 print("Bill over 5000 KZT:", total > 5000) # [cite: 205]
+
