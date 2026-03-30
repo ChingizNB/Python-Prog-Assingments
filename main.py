@@ -1,31 +1,55 @@
-# a) Ввод данных [cite: 170, 171]
-customer = input("Enter customer name: ")
-item1 = input("Enter name of item 1: ")
-price1 = float(input("Enter price of item 1 (KZT): "))
-item2 = input("Enter name of item 2: ")
-price2 = float(input("Enter price of item 2 (KZT): "))
-people = int(input("Enter number of people: "))
+# Task D1 - Multiple Orders (while loop)
+customer_name = input("Enter customer name: ")
+subtotal = 0.0
+item_count = 0
 
-# b) Расчеты [cite: 180, 181]
-subtotal = price1 + price2 # [cite: 182]
-tip = subtotal * 0.10 # [cite: 183]
-total = subtotal + tip # [cite: 184]
-per_person = total / people # [cite: 185]
+while True:
+    item_name = input("Enter item name (or 'done' to finish): ")
 
-# c) Вывод чека [cite: 186, 187]
-print("=" * 30) # [cite: 201]
-print("CAFE BILL")
-print("-" * 30)
-print(f"Customer: {customer}")
-print(f"{item1}: {price1} KZT")
-print(f"{item2}: {price2} KZT")
-print(f"Subtotal: {subtotal} KZT")
-print(f"Tip (10%): {tip} KZT")
-print(f"Total: {total} KZT")
-print(f"Per person: {per_person} KZT")
-print("=" * 30)
+    if item_name.lower() == 'done':
+        break
 
-# d) Сравнение [cite: 202, 203]
-print("Tip included:", tip > 0) # [cite: 204, 206]
-print("Bill over 5000 KZT:", total > 5000) # [cite: 205]
+    price = float(input("Enter price: "))
+    subtotal += price
+    item_count += 1
 
+print(f"\nCustomer: {customer_name.upper()}")
+print(f"Items: {item_count}")
+print(f"Subtotal {subtotal} KZT")
+
+# Task D2 - Time-Based Discount (if/elif/else)
+hour = int(input("\nEnter current hour (0-23): "))
+
+if 6 <= hour < 12:
+    discount_label = "Morning discount"
+    discount_percent = 0.10  # 10% off
+elif 12 <= hour < 17:
+    discount_label = "No discount"
+    discount_percent = 0.0
+elif 17 <= hour < 22:
+    discount_label = "Evening discount"
+    discount_percent = 0.05  # 5% off
+else:
+    print("Closed")
+    discount_label = None
+
+if discount_label is not None:
+    discount_amount = subtotal * discount_percent
+    discounted_price = subtotal - discount_amount
+    tip = discounted_price * 0.10
+    total = discounted_price + tip
+
+    print(f"Time period: {discount_label}")
+    print(f"Discount: {discount_amount} KZT")
+    print(f"Tip (10%): {tip} KZT")
+    print(f"Total: {total} KZT")
+
+# Task D3 - Name Analysis (strings)
+print(f"\nName uppercase: {customer_name.upper()}")
+print(f"Name lowercase: {customer_name.lower()}")
+print(f"Name length: {len(customer_name)}")
+
+if customer_name[0].upper() == 'A' or customer_name[0].upper() == 'S':
+    print("VIP customer")
+else:
+    print("Regular customer")
